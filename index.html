@@ -13,19 +13,34 @@
     <header>
         <img src="img/ogo.png" id="ogo">
         <span id="logo"></span>
-            <a href="#" id="link1">Home</a>
-            <a href="#" id="link2">About</a>
-            <a href="#" id="link3">Services</a>
-            <a href="#" id="link4">Contact</a>
+        <div id="nav" class="topnav responsive">
+            <a href="#news" id="link1">News</a>
+            <a href="#Team" id="link2">Team</a>
+            <a href="#Shop" id="link3">Shop</a>
+            <a href="#Contact" id="link4">Contact</a>
+            <a href="javascript:void(0)" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
     </header>
     <div class="content">
-
+        <div class="bubble">this has the first bubble</div>
+        <div class="bubble">this has the second bubble</div>
     </div>
     <footer>
         <span>
             trademark &copy;
         </span>
     </footer>
+    <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                x.style.background=blue;
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+            </script>
 </body>
 
 </html>

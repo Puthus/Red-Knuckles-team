@@ -1,73 +1,125 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-body,html{
-    margin:0;
+body,
+html {
+    margin: 0;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+    background: rgb(0, 0, 0);
+    background-image: url(../img/pattern.png);
+    background-size: 100px;
+    background-repeat: repeat;
+    overflow-y: auto;
 }
 
-body{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
     display: grid;
-    grid-template-rows: 50px auto 50px; 
+    grid-template-rows: 50px auto 50px;
     grid-template-columns: 1fr 5fr;
     grid-template-areas: 
-    "header header"
-    "content content"
+    "header header" 
+    "content content" 
     "footer footer";
 }
-.content{
+
+.content {
     grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 10px;
     justify-self: center;
     align-self: center;
-    background:transparent;
+    background: transparent;
     width: 100%;
     height: 100%;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
     z-index: 1;
+    color: white;
+    margin-top:20px;
 }
-footer{
-    display:grid;
+
+.bubble{
+    display: inherit;
+    width: 95%;
+    height: 550px;
+    justify-self: center;
+    align-self: center;
+    background-color: rgba(110, 110, 110, 0.493);
+    text-align: center;
+    border-radius: 24px;
+}
+.bubble::before{
+    background: inherit;
+    filter: blur(5px);
+}
+footer {
+    display: grid;
     grid-area: footer;
     align-self: center;
     justify-self: center;
-    width:100%;
-    height:200px;
+    width: 100%;
+    height: 100%;
     text-justify: center;
-    padding-top: 25px;
-    margin-top:-25px;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0),rgb(0, 0, 0));
 }
-footer span{
+
+footer span {
     justify-self: center;
     align-self: center;
     border-radius: 10px;
 }
 
-header{
+header {
     grid-area: header;
-    width:100%;
+    width: 100%;
     display: grid;
     grid-auto-rows: auto;
-    grid-auto-columns: 4fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
-    "logo link1 link2 link3 link4";
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas: "logo nav";
+    background:transparent;
+    z-index: 2;
 }
 
-#logo{
+#nav {
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "link1 link2 link3 link4";
+}
+
+#logo {
     grid-area: logo;
+    display: grid;
     height: 100%;
     border-radius: 0 25px 25px 0;
     transition: 1000ms;
     width: 50px;
     background-color: #C62B29;
 }
-#ogo:hover + #logo{
-    width:100%;
+
+#ogo:hover+#logo {
+    width: 100%;
     transition: 1000ms;
 }
-#ogo:hover{
-    transform: rotate3d(0,0,1,360deg);
+
+#ogo:hover+#logo::after {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    content: "This is the Wae";
+    animation: fadein 0.5s;
 }
-#ogo{
+
+#ogo:hover {
+    transform: rotate3d(0, 0, 1, 360deg);
+}
+
+#ogo {
     grid-area: logo;
     width: 50px;
     height: 100%;
@@ -76,40 +128,78 @@ header{
     transition: 1000ms;
 }
 
-header a{
+header a {
     display: inherit;
-    width:100%;
+    width: 100%;
     height: 100%;
     color: black;
     text-decoration: none;
     align-items: center;
     justify-items: center;
     font-size: 17px;
-    background-color: #C62B29;
-    transition: 300ms;
-}
-header a:hover{
-    background-color: black;
-    color:lightgrey;
-    transition: 300ms;
+    background: #C62B29;
+    overflow: hidden;
+    transition: 500ms;
 }
 
-#link1{
+header a:hover {
+    font-weight: 700;
+    padding: 5px 0;
+    border-radius: 0 0 5px 5px;
+}
+
+#link1 {
     grid-area: link1;
     border-radius: 25px 0 0 25px;
 }
-#link2{
+
+#link2 {
     grid-area: link2;
 }
-#link3{
+
+#link3 {
     grid-area: link3;
 }
-#link4{
+
+#link4 {
     grid-area: link4;
 }
-@media screen and(min-width:1000px){
-    footer:after{
-        background-color: #C62B29;
-        height: 100px;
+@media only screen and (max-width:860px) {
+    #nav{
+        width:100%;
+        visibility: visible;
     }
 }
+
+@media only screen and (min-width:1280px) {
+    header {
+        grid-auto-columns: 640px 1fr 640px;
+        grid-template-areas: "logo . nav";
+    }
+    .content{
+        grid-auto-columns: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (max-width:320px) {
+    #heade{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "logo nav";
+    }    
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        font-size: 0.5em;
+    }
+    to {
+        opacity: 1;
+        font-size: 1em;
+    }
+}
+
+
+  .topnav .icon {
+    display: none;
+  }
